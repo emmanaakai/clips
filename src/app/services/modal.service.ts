@@ -12,12 +12,14 @@ export class ModalService {
   private modals: IModal[] = []
   constructor() {}
 
-  isModalOpen(){
-    return true;
+  isModalOpen(id: string) : boolean{
+    return !!this.modals.find(modal => modal.id === id)?.visible;
   }
 
-  toggleModal(){
-    // this.visible = !this.visible;
+  toggleModal(id: string){
+    const modal = this.modals.find(modal => modal.id === id);
+
+    if(modal) modal.visible = !modal.visible;
   }
 
   register(id:string){
